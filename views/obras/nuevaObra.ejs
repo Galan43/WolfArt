@@ -1,0 +1,22 @@
+<%- include ("../templates/encabezado")%>
+<div class="container mt-5">
+    <form action="/obra/obras/nuevaobra" method="post" enctype="multipart/form-data"> 
+        <div class="card">
+            <div class="card-header">
+                <h1>Nueva Obra</h1>
+            </div>
+            <div class="card-body">
+                <input class="form-control mb-3" type="text" name="nombre" id="nombre"  placeholder="Nombre de la obra" autofocus>
+                <input class="form-control mb-3" type="text" name="artista" id="artista"  placeholder="Artista de la obra">
+                <textarea class="form-control mb-3" name="descripcion" id="descripcion" placeholder="Descripción de la obra" rows="4"></textarea>
+                <input class="form-control mb-3" type="text" name="anio" id="anio" placeholder="Año de la obra">
+                <input class="form-control mb-3" type="file" name="foto" id="foto">
+            </div>
+            <div class="card-footer">
+                <button class="form-control btn btn-primary" type="submit">Guardar Obra</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include ("../templates/pie")%>

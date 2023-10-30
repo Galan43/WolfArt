@@ -1,0 +1,65 @@
+<%- include ("../templates/encabezado")%>
+<%
+    if(tipo == undefined){
+%>
+
+<%- include ("../templates/menuAdmin")%>
+
+<% 
+    } 
+    else {
+%>
+ <%- include ("../templates/menuUsuarios")%>
+
+<% 
+    }
+%>
+
+<div class="container mt-5" >
+
+        
+    <div class="card"></div>
+      <div class="card-header">
+          <h1>Usuarios</h1>
+      </div>
+      <div class="card-body">
+          <table class="table table-hover">
+              <thead>
+                  <tr>
+                      <th>id</th>
+                      <th>Nombre</th>
+                      <th>Usuario</th>
+                      <th>Password</th>
+                      <th>Foto</th>
+                      <th>Editar/Borrar</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <%
+                      usuarios.forEach((usuario)=>{ 
+                  %>
+                  <tr>
+                      <td><%= usuario.id%></td>
+                      <td><%= usuario.nombre%></td>
+                      <td><%= usuario.usuario%></td>
+                      <td><%= usuario.password.slice(0,8)%></td>
+                      <td> <img width="80px" height="80px" src="/images/<%= usuario.foto%>"></td>
+                      <td>
+                          <a href="/editar/<%= usuario.id%>">Editar</a>
+                          <a href="/borrar/<%= usuario.id%>">Borrar</a>
+                      </td>
+                  </tr>
+                  <%
+                  });
+                  %>
+              </tbody>
+          </table>
+      </div>
+      <div class="card-footer">
+
+      </div>
+  </div>
+
+<%- include ("../templates/pie")%>
+
+

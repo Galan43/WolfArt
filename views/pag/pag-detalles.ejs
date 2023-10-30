@@ -1,0 +1,42 @@
+<%- include ("../templates/encabezado")%>
+<%
+    if (tipo == undefined) {
+%>
+
+<%- include ("../templates/menuAdmin")%>
+
+<% 
+    } else {
+%>
+<%- include ("../templates/menuUsuarios")%>
+
+<% 
+    }
+%>
+<div class="detalles-container">
+    <h1>Detalles de la obra</h1>
+    <div class="obra-details">
+      <div class="obra-details-info">
+        <img src="/images/<%= obra.foto %>" alt="<%= obra.nombre %>" class="detalles-obra-img">
+        <table class="obra-table">
+          <tr>
+            <td class="table-label-detalles">Nombre:</td>
+            <td><%= obra.nombre %></td>
+          </tr>
+          <tr>
+            <td class="table-label-detalles">Artista:</td>
+            <td><%= obra.artista %></td>
+          </tr>
+          <tr>
+            <td class="table-label-detalles">Año:</td>
+            <td><%= obra.anio %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="obra-description">
+        <h2 class="detalles-h2">Descripción:</h2>
+        <p class="detalles-p"><%= obra.descripcion %></p>
+      </div>
+    </div>
+  </div>
+<%- include ("../templates/pie")%>

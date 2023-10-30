@@ -1,0 +1,54 @@
+.detalles-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px; /* Margen inferior para separar del fondo */
+    background-color: white;
+    margin-top: 20px;
+  }
+  
+  .obra-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+  
+  .obra-details-info {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .detalles-obra-img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .obra-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .table-label-detalles {
+    font-weight: bold;
+    padding-right: 10px;
+  }
+  
+  .obra-description {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+  }
+  
+  .detalles-h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+ .detalles-p{
+    font-size: 16px;
+    text-align: justify;
+  }

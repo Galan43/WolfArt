@@ -1,0 +1,117 @@
+body {
+    background-image: url('https://live.staticflickr.com/65535/53288119828_42800e3ec3_o.png');     
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    opacity: 0.87; /* Opacidad del fondo */
+  }
+  .custom-container {
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.custom-card {
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    width: 800px; /*modifica el tamaño del todo container o eso (prueba) */
+    margin: 0 auto; 
+}
+
+.custom-header {
+    font-size: 30px;
+}
+
+.custom-form-group {
+    margin-bottom: 30px;
+}
+
+.custom-label {
+    font-weight: bold;
+}
+
+.custom-input {
+    width: 100%;   /*modifica el tamaño de usuario y de contraseña */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.custom-btn {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.custom-link {
+    text-decoration: none;
+    color: #007bff;
+    margin-left: 10px;
+}
+
+.welcome {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  color: white;
+  margin-top: 0; 
+}
+
+.slogan {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  color: white;
+}
+
+.logo-and-welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.welcome-text {
+    flex: 1;
+    text-align: center;
+}
+
+.tab-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+}
+
+.tab-group .tab {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.tab-group .tab.active {
+    background-color: white;
+    color: #fff;
+    border: none;
+}
+
+.tab-content {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.tab-content:first-child {
+    display: block;
+}

@@ -1,0 +1,25 @@
+<%- include ("../templates/encabezado")%>
+
+<div class="container mt-5">
+    <form action="/obra/obras/editarObra" method="post" enctype="multipart/form-data"> 
+        <div class="card">
+            <div class="card-header">
+                <h1>Modificar Obra</h1>
+            </div>
+            <div class="card-body">
+                <input type="hidden" name="id" id="id" value="<%= obra.id %>">
+                <input type="hidden" name="fotoVieja" id="fotoVieja" value="<%= obra.foto %>">
+                <input class="form-control mb-3" type="text" value="<%= obra.nombre %>" name="nombre" id="nombre"  placeholder="Nombre de la obra" autofocus>
+                <input class="form-control mb-3" type="text" value="<%= obra.artista %>" name="artista" id="artista"  placeholder="Artista de la obra">
+                <textarea class="form-control mb-3" name="descripcion" id="descripcion" placeholder="Descripción de la obra" rows="4"><%= obra.descripcion %></textarea>
+                <input class="form-control mb-3" type="text" value="<%= obra.anio %>" name="anio" id="anio" placeholder="Año de la obra">
+                <input class="form-control mb-3" type="file" name="foto" id="foto">
+            </div>
+            <div class="card-footer">
+                <button class="form-control btn btn-primary" type="submit">Modificar Obra</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%- include ("../templates/pie")%>

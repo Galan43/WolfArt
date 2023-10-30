@@ -1,0 +1,39 @@
+<%- include("../templates/encabezado") %>
+<div class="custom-container mt-5">
+  <div class="welcome-and-logo">
+    <div class="welcome-text">
+      <h1 class="welcome">Bienvenido a WolfArt</h1>
+      <h2 class="slogan">Un rincón para la creatividad sin fronteras</h2>
+    </div>
+    <img class="logo" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
+  </div>
+  <form action="/login" method="POST">
+    <div class="custom-card">
+      <div class="custom-card-header">
+        <h1 class="custom-header">Iniciar sesión</h1>
+      </div>
+      
+      <div class="custom-card-body">
+        <div class="custom-form-group">
+          <label class="custom-label" for="usuario">Usuario</label>
+          <input class="custom-input" type="text" id="usuario" name="usuario">
+        </div>
+        <div class="custom-form-group">
+          <label class="custom-label" for="password">Contraseña</label>
+          <input class="custom-input" type="password" id="password" name="password">
+        </div>
+      </div>
+      <div class="custom-card-footer">
+        <button class="custom-input custom-btn" type="submit" value="Iniciar sesión"> Iniciar sesión</button>
+      </div>
+      <!-- Agregar la sección de pestañas aquí (arriba de "Iniciar sesión" y debajo de "Usuario") -->
+      <div class="form">
+        <ul class="tab-group">
+          <li class="tab active"><a href="/nuevousuario">Registrarse</a></li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>
+
+<%- include("../templates/pie") %>

@@ -1,0 +1,63 @@
+
+<%- include ("../templates/encabezado")%>
+<%
+    if(tipo == undefined){
+%>
+
+<%- include ("../templates/menuAdmin")%>
+
+<% 
+    } 
+    else {
+%>
+ <%- include ("../templates/menuUsuarios")%>
+
+<% 
+    }
+%>
+<div class="container mt-5">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h1>Obras</h1>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Artista</th>
+                            <th>Descripcion</th>
+                            <th>Año</th>
+                            <th>Foto</th>
+                            <th>Editar / Borrar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% obrasSnapshot.forEach((obra) => { %>
+                        <tr>
+                            <td><%= obra.id %></td>
+                            <td><%= obra.nombre %></td>
+                            <td><%= obra.artista %></td>
+                            <td><%= obra.descripcion %></td>
+                            <td><%= obra.anio %></td>
+                            <td><img width="100px" height="100px" src="/images/<%= obra.foto %>"></td>
+                            <td>
+                                <a href="/obra/obras/editarObra/<%= obra.id %>">Editar</a>
+                                <a href="/obra/obras/borrarObra/<%= obra.id %>">Borrar</a>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer"></div>
+        </div>
+    </div>
+</div>
+
+
+<%-  include("../templates/pie") %>
+
+
