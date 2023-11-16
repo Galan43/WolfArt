@@ -1,20 +1,18 @@
-<%- include ("../templates/encabezado")%>
-<%
+  <%- include ("../templates/encabezado")%>
+  <%
     if(tipo == undefined){
-%>
-
-<%- include ("../templates/menuAdmin")%>
-
-<% 
+  %>
+  <%- include ("../templates/menuAdmin")%>
+  <% 
     } 
     else {
-%>
- <%- include ("../templates/menuUsuarios")%>
-
-<% 
+  %>
+  <%- include ("../templates/menuUsuarios")%>
+  <% 
     }
-%>
-<div class="container">
+  %>
+
+  <div class="container">
     <h1>Obras</h1>
     <div class="obra-grid">
       <% obras.forEach((obra) => { %>
@@ -26,11 +24,12 @@
             <p class="card-text obra-year">Año: <%= obra.anio %></p>
           </div>
           <div class="card-footer">
-            <a href="/obra/detallesobra/<%= obra.id %>" class="btn btn-primary obra-details-btn">Ver detalles</a>
+              <a href="/obra/detallesobra/<%= obra.id %>" class="btn btn-primary obra-details-btn">Ver detalles</a>
+              
           </div>
-        </div>
+        </div>              
       <% }); %>
     </div>
   </div>
 
-  <%- include ("../templates/pie")%>
+  <%- include ("../templates/piedonar")%>

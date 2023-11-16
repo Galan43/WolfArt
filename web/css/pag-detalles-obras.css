@@ -35,6 +35,7 @@
   .table-label-detalles {
     font-weight: bold;
     padding-right: 10px;
+    color: black;
   }
   
   .obra-description {
@@ -49,6 +50,22 @@
   }
   
  .detalles-p{
+    font-size: 16px;
+    text-align: justify;
+  }
+  .calificacion-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    text-align: left;
+  }
+  
+  .calificacion-container h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .calificacion-container .calificacion-p {
     font-size: 16px;
     text-align: justify;
   }

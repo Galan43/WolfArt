@@ -5,12 +5,16 @@ async function mostrarObras() {
   var obras = [];
   try {
     var obrasSnapshot = await conexionObra.get();
-    obrasSnapshot.forEach((obra) => {
-      var obraData = new Obras(obra.id, obra.data());
-      if (obraData.bandera == 0) {
-        obras.push(obraData.obtenerDatos());
-      }
-    });
+
+    // Verifica si obrasSnapshot es válido antes de intentar iterar sobre él
+    if (obrasSnapshot && obrasSnapshot.forEach) {
+      obrasSnapshot.forEach((obra) => {
+        var obraData = new Obras(obra.id, obra.data());
+        if (obraData.bandera == 0) {
+          obras.push(obraData.obtenerDatos());
+        }
+      });
+    }
   } catch (err) {
     console.log("Error al recuperar obras de la base de datos: " + err);
   }
@@ -37,7 +41,7 @@ async function nuevaObra(datos) {
   var error = 1;
   if (obraData.bandera == 0) {
     try {
-      await conexionObra.doc().set(obraData.obtenerDatos());
+      await conexionObra.doc(obraData.nombre).set(obraData.obtenerDatos());
       console.log("Obra insertada en la base de datos");
       error = 0;
     } catch (err) {
@@ -91,6 +95,61 @@ async function llamarDatosObra() {
   }
 }
 
+async function calificarObra(idObra, calificacion, res) {
+  try {
+    const obra = await buscarObraPorID(idObra);
+
+    if (obra) {
+      if (typeof calificacion === 'string') {
+        obra.calificacion = calificacion; 
+        await conexionObra.doc(idObra).set(obra); 
+        console.log("Calificación registrada");
+        res.redirect(`/obra/detallesobra/${obra.id}`);      
+        } 
+      }
+  } catch (err) {
+    console.log("Error al calificar la obra: " + err);
+    res.status(500).send('Error interno del servidor');
+  }
+}
+
+async function obtenerCalificacionActual(idObra) {
+  try {
+    const obra = await buscarObraPorID(idObra);
+
+    if (obra) {
+      return obra.calificacion;
+    } else {
+      console.log("Obra no encontrada");
+      return null; 
+    }
+  } catch (err) {
+    console.error("Error al obtener la calificación actual: " + err);
+    return null;
+  }
+}
+
+function obtenerIdObraActual(req) {
+  return req.query.id; 
+}
+
+
+async function buscarObra(id) {
+  try {
+    console.log("Buscando obra con ID:", id);
+    var obraData = await conexionObra.doc(id).get();
+    if (obraData.exists) {
+      console.log("Obra encontrada:", obraData.data());
+      return new Obras(obraData.id, obraData.data());
+    } else {
+      console.log("No se encontró la obra");
+      return null;
+    }
+  } catch (err) {
+    console.error("Error al buscar la obra: " + err);
+    throw err; k
+  }
+}
 
 module.exports = {
   mostrarObras,
@@ -99,4 +158,8 @@ module.exports = {
   borrarObra,
   nuevaObra,
   llamarDatosObra,
+  calificarObra,
+  buscarObra,
+  obtenerCalificacionActual,
+  obtenerIdObraActual,
 };

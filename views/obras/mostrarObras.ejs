@@ -30,6 +30,7 @@
                             <th>Artista</th>
                             <th>Descripcion</th>
                             <th>Año</th>
+                            <th>Calificacion</th>
                             <th>Foto</th>
                             <th>Editar / Borrar</th>
                         </tr>
@@ -42,6 +43,8 @@
                             <td><%= obra.artista %></td>
                             <td><%= obra.descripcion %></td>
                             <td><%= obra.anio %></td>
+                            <td><%= obra.calificacion %></td>
+
                             <td><img width="100px" height="100px" src="/images/<%= obra.foto %>"></td>
                             <td>
                                 <a href="/obra/obras/editarObra/<%= obra.id %>">Editar</a>
@@ -58,6 +61,6 @@
 </div>
 
 
-<%-  include("../templates/pie") %>
+<%-  include("../templates/piedonar") %>
 
 

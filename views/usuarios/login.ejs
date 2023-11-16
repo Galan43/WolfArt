@@ -1,10 +1,5 @@
 <%- include("../templates/encabezado") %>
-<div class="custom-container mt-5">
-  <div class="welcome-and-logo">
-    <div class="welcome-text">
-      <h1 class="welcome">Bienvenido a WolfArt</h1>
-      <h2 class="slogan">Un rincón para la creatividad sin fronteras</h2>
-    </div>
+<!-- <div class="custom-container mt-5">
     <img class="logo" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
   </div>
   <form action="/login" method="POST">
@@ -26,7 +21,6 @@
       <div class="custom-card-footer">
         <button class="custom-input custom-btn" type="submit" value="Iniciar sesión"> Iniciar sesión</button>
       </div>
-      <!-- Agregar la sección de pestañas aquí (arriba de "Iniciar sesión" y debajo de "Usuario") -->
       <div class="form">
         <ul class="tab-group">
           <li class="tab active"><a href="/nuevousuario">Registrarse</a></li>
@@ -34,6 +28,29 @@
       </div>
     </div>
   </form>
-</div>
+</div> -->
 
-<%- include("../templates/pie") %>
+<body class="login-body">
+  <div class="wrapper">
+  <form action="/login" method="POST" class="form-login">
+    <h1 class="title-login">Inicio de sesion</h1>
+    <div class="inp-login">
+      <input type="text" name="usuario" id="usuario" class="input-login" placeholder="Usuario">
+      <i class="fa-solid fa-lock"></i>
+    </div>
+    <div class="inp-login">
+      <input type="password" name="password" id="password" class="input-login" placeholder="Contraseña">
+      <i class="fa-solid fa-lock"></i>
+    </div>
+    <button class="submit-login" type="submit" value="Iniciar sesión"> Iniciar sesión</button>
+    <p class="footer-login">¿No tienes cuenta?<a href="/nuevousuario" class="link-login">Por favor, Registrate </a></p>    
+  </form>
+
+  <div></div>
+    <div class="banner-login">
+      <h1 class="wel_text"><br/></h1>
+      <p class="para-login"><img class="logo-login" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito"></p>
+    </div>
+  </div>
+</body>
+

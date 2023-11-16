@@ -1,0 +1,25 @@
+.logoLobito{
+    display: block;
+    width: 350px;
+    height: 350px;
+}
+
+body {
+    background-image: url("https://live.staticflickr.com/65535/53321209403_dafcf58e04_o.jpg");
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    background-position: center; /* Centra la imagen en el fondo */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen de fondo */
+}
+
+.welcome{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: aliceblue;
+    
+}
+
+.slogan{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: aliceblue;
+    font-style: italic;
+}
+

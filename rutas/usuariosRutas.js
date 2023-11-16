@@ -75,6 +75,10 @@ ruta.get("/borrar/:id", async (req, res) => {
 });
 
 ruta.get("/", async (req, res) =>{
+  res.render("usuarios/index");
+});
+
+ruta.get("/login", async (req,res) =>{
   res.render("usuarios/login");
 });
 
@@ -89,7 +93,7 @@ ruta.post("/login", async (req, res) => {
         res.redirect("/usuarios");
       }else{
         req.session.usuario = usuarioEnt.usuario;  
-        res.redirect("/usuarios");
+        res.redirect("/obra/obras/");
       }
     } else {
       console.log("Usuario o contraseña incorrectos");
@@ -101,9 +105,11 @@ ruta.post("/login", async (req, res) => {
   }
 });
 
+
+
 ruta.get("/logout", (req,res)=>{
 req.session=null;
-res.redirect("/");
+res.redirect("/login");
 });
 
 module.exports = ruta;
