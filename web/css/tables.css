@@ -1,0 +1,75 @@
+.card-user {
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.card-header-user {
+    font-size: 30px;
+    text-align: center;
+    background-color: #44559e;
+    padding: 15px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.custom-table {
+    width: 100%;
+    font-family: sans-serif;
+    font-weight: 100;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 20px #0000001a;
+
+}
+
+.th-user,
+.td-user {
+    background-color: #ffffff33;
+    padding: 15px;
+
+}
+
+.th-user {
+    text-align: left;
+}
+
+.thead-user th {
+    background-color: #55608f;
+}
+
+.tbody-user tr:hover {
+    background-color: #ffffff4d;
+}
+
+.tbody-user td {
+    position: relative;
+}
+
+.tbody-user img {
+    width: 80px;
+    height: 80px;
+}
+
+.custom-table th,
+.custom-table td {
+    padding: 12px;
+    border: 1px solid  #2f3d7b;
+}
+
+.custom-table th {
+    background-color: #55608f; 
+    color: #fff;
+    border: #55608f;
+    border:  1px solid #2f3d7b;
+}
+
+.custom-table tbody tr:hover {
+    background-color: rgba(85, 96, 143, 0.5); 
+    transition: background-color 0.3s ease;
+}

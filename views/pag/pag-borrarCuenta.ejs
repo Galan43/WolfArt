@@ -1,0 +1,29 @@
+<%- include ("../templates/encabezado")%>
+<%
+    if (tipo == undefined) {
+%>
+
+<%- include ("../templates/menuAdmin")%>
+
+<% 
+    } else {
+%>
+<%- include ("../templates/menuUsuarios")%>
+
+<% 
+    }
+%>
+    <meta charset="UTF-8">
+    <title>Confirmar Eliminación de Cuenta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+    <div class="confirmation-container">
+        <div class="warning-message">
+            <h2>¿Está seguro de borrar su cuenta?</h2>
+        </div>
+        <div class="buttons">
+            <a href="/modificarCuenta/<%= usuarioId %>" >Sí, borrar cuenta</a>
+            <a href="obra/obras" >No</a>
+        </div>
+    </div>
+<%- include ("../templates/pie")%>

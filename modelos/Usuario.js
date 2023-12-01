@@ -1,6 +1,5 @@
 class Usuarios {
     constructor(id, data) {
-      // console.log(data);
       this.bandera = 0;
       this.id = id;
       this.nombre = data.nombre;
@@ -15,8 +14,6 @@ class Usuarios {
       if (id != null) id.length > 0 ? (this._id = id) : (this.bandera = 1);
     }
     set nombre(nombre) {
-      // console.log("Hola");
-      // console.log(nombre);
       nombre.length > 0 ? (this._nombre = nombre) : (this.bandera = 1);
     }
     set usuario(usuario) {
@@ -24,7 +21,6 @@ class Usuarios {
     }
     set password(password) {
       password.length > 0 ? (this._password = password) : (this.bandera = 1);
-      // console.log(this._password);
     }
     set foto(foto) {
       foto.length > 0 ? (this._foto = foto) : (this.bandera = 1);

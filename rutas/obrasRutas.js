@@ -9,7 +9,7 @@ var {
   calificarObra, 
   buscarObra,
   obtenerCalificacionActual,
-   obtenerIdObraActual
+  obtenerIdObraActual
   
 } = require("../BD/obrasBD");
 var subirArchivo = require("../middlewares/subirArchivo");
@@ -17,6 +17,8 @@ var fs = require("fs");
 var { autorizado, admin } = require("../middlewares/funcionesPassword");
 const obras = require("../modelos/obras");
 const obrasController = require('../controladores/obrasController');
+const { mostrarComentariosPorId, nuevoComentario, mostrarComentarios } = require("../BD/comentariosBD");
+
 
 
 rutasObra.get("/obras/mostrarobras", async (req, res) => {
@@ -75,7 +77,7 @@ rutasObra.get("/obras/borrarObra/:id", async (req, res) => {
       fs.unlinkSync(`web/images/${foto}`);
       await borrarObra(req.params.id);
     }
-    res.redirect("/obra/obras/");
+    res.redirect("/obra/obras/mostrarobras");
   } catch (error) {
     console.error("Error al borrar obra:", error);
     res.status(500).send("Error interno del servidor");
@@ -101,9 +103,12 @@ rutasObra.get('/detallesobra/:id', async (req, res) => {
     if (!obra) {
       res.status(404).send('Obra no encontrada');
       return;
-    }
+    } 
+    const usuarioId = req.session.usuarioId;
+    const comentarios = await mostrarComentariosPorId(obraId);
+
     const tipo = req.session.usuario || undefined;
-    res.render('pag/pag-detalles', { obra, tipo });
+    res.render('pag/pag-detalles', { obra, comentarios, tipo, usuarioId }); 
   } catch (error) {
     console.error('Error al obtener los detalles de la obra: ' + error);
     res.status(500).send('Error al obtener los detalles de la obra');
@@ -136,13 +141,37 @@ rutasObra.post('/obras/calificar/:idObra', async (req, res) => {
   try {
     const idObra = req.params.idObra;
     const calificacion = req.body.calificacion;
-
-    // Llama a la función para calificar la obra
     await calificarObra(idObra, calificacion, res);
-    
-    // Redirige a la página de mostrarObras
-  } catch (error) {
+      } catch (error) {
     console.error('Error al calificar la obra:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
+
+rutasObra.post("/agregarComentario", autorizado, async (req, res) => {
+  try {
+    req.body.usuario = req.session.usuario;
+    var error = await nuevoComentario(req.body);
+    res.redirect(req.get('referer'));
+  } catch (err) {  
+    console.error("Error al agregar el comentario:", err);
+    res.send(`<script>alert("${error}"); window.location.href="/obra/obras/";</script>`);
+  }
+});
+
+
+rutasObra.get("/comentarios", admin, async (req, res) => {
+  try {
+    // Agregar un console.log para verificar el estado de los datos antes de la consulta
+    console.log("Verificando datos antes de la consulta a Firestore:");
+
+    const comentarios = await mostrarComentarios();
+    console.log("Comentarios recuperados:", comentarios);
+
+    const tipo = req.session.usuario || undefined; 
+    res.render('obras/mostrarComentarios', { comentarios, tipo });
+  } catch (err) {
+    console.error('Error al recuperar comentarios:', err);
     res.status(500).send('Error interno del servidor');
   }
 });

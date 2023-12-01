@@ -1,0 +1,43 @@
+<%- include ("../templates/encabezado")%>
+<%
+    if (tipo == undefined) {
+%>
+<%- include ("../templates/menuAdmin")%>
+<% 
+    } else {
+%>
+<%- include ("../templates/menuUsuarios")%>
+<% 
+    }
+%>
+<div class="container mt-5">
+    <div class="card-user">
+    <div class="container-comentarios">
+        <h1>Comentarios</h1>
+        <table class="comment-table custom-table" style="background-color: white;">
+            <thead class="thead-comment">
+                <tr class="tr-comment">
+                    <th class="th-comment">ID del Comentario</th>
+                    <th class="th-comment">Comentario en la obra</th>
+                    <th class="th-comment">Comentario hecho por</th>
+                    <th class="th-comment">Texto del comentario</th>
+                </tr>
+            </thead>
+            <tbody class="tbody-comment">
+                <% comentarios.forEach((comentario) => { %>
+                    <tr class="comment-item">
+                        <td class="td-comment"><%= comentario.id %></td>
+                        <td class="td-comment"><%= comentario.obra %></td>
+                        <td class="td-comment"><%= comentario.usuario %></td>
+                        <td class="td-comment"><%= comentario.comentario %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+
+
+<%- include("../templates/piedonar") %>

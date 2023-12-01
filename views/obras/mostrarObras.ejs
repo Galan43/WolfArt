@@ -16,36 +16,35 @@
     }
 %>
 <div class="container mt-5">
-    <div class="container">
-        <div class="card">
-            <div class="card-header">
+    <div class="card-user">
+            <div class="card-header-user">
                 <h1>Obras</h1>
             </div>
-            <div class="card-body">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nombre</th>
-                            <th>Artista</th>
-                            <th>Descripcion</th>
-                            <th>Año</th>
-                            <th>Calificacion</th>
-                            <th>Foto</th>
-                            <th>Editar / Borrar</th>
+            <div class="card-body-user">
+                <table class="custom-table">
+                    <thead class="thead-user">
+                        <tr class="tr-user">
+                            <th class="th-user">Id</th>
+                            <th class="th-user">Nombre</th>
+                            <th class="th-user">Artista</th>
+                            <th class="th-user">Descripcion</th>
+                            <th class="th-user">Año</th>
+                            <th class="th-user">Calificacion</th>
+                            <th class="th-user">Foto</th>
+                            <th class="th-user">Editar / Borrar</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody-user">
                         <% obrasSnapshot.forEach((obra) => { %>
                         <tr>
-                            <td><%= obra.id %></td>
-                            <td><%= obra.nombre %></td>
-                            <td><%= obra.artista %></td>
-                            <td><%= obra.descripcion %></td>
-                            <td><%= obra.anio %></td>
-                            <td><%= obra.calificacion %></td>
+                            <td class="td-user"><%= obra.id %></td>
+                            <td class="td-user"><%= obra.nombre %></td>
+                            <td class="td-user"><%= obra.artista %></td>
+                            <td class="td-user"> <%= obra.descripcion %></td>
+                            <td class="td-user"><%= obra.anio %></td>
+                            <td class="td-user"><%= obra.calificacion %></td>
 
-                            <td><img width="100px" height="100px" src="/images/<%= obra.foto %>"></td>
+                            <td class="td-user"><img  src="/images/<%= obra.foto %>"></td>
                             <td>
                                 <a href="/obra/obras/editarObra/<%= obra.id %>">Editar</a>
                                 <a href="/obra/obras/borrarObra/<%= obra.id %>">Borrar</a>
@@ -56,7 +55,6 @@
                 </table>
             </div>
             <div class="card-footer"></div>
-        </div>
     </div>
 </div>
 

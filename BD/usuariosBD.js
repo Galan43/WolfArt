@@ -42,7 +42,7 @@ async function nuevoUsuario(datos) {
   var error = 1;
   if (user.bandera == 0) {
     try {
-      await conexion.doc().set(user.obtenerDatos);
+      await conexion.doc(user.nombre).set(user.obtenerDatos);
       console.log("Usuario insertado a la base de datos");
       error = 0;
     } catch (err) {
@@ -51,26 +51,34 @@ async function nuevoUsuario(datos) {
   }
   return error;
 }
-
 async function modificarUsuario(datos) {
-  // console.log(datos.foto);  Undefined cuando no llega nada
-  // console.log(datos.fotoVieja);
-  // console.log(datos.password); Texto en blanco
-  // console.log(datos.passwordViejo);
   var error = 1;
   var respuestaBuscar = await buscarPorID(datos.id);
-  if (respuestaBuscar != "") {
-    if(datos.password == ""){
-      datos.password=datos.passwordViejo;
-      datos.salt=datos.saltViejo;
+  
+  if (respuestaBuscar !== "") {
+    var usuarioActual = await conexion.doc(datos.id).get();
+    var datosUsuario = usuarioActual.data();
+
+    if (datos.password === "") {
+      datos.password = datosUsuario.password;
+      datos.salt = datosUsuario.salt;
+    } else {
+      var { salt, hash } = encriptarPassword(datos.password);
+      datos.password = hash;
+      datos.salt = salt;
     }
-    else{
-      var {salt, hash}=encriptarPassword(datos.password);
-      datos.password=hash;
-      datos.salt=salt;
-    }
-    var user = new Usuario(datos.id, datos);
-    if (user.bandera == 0) {
+    var datosActualizados = {
+      nombre: datos.nombre !== undefined ? datos.nombre : datosUsuario.nombre,
+      usuario: datos.usuario !== undefined ? datos.usuario : datosUsuario.usuario,
+      password: datos.password,
+      salt: datos.salt,
+      foto: datos.foto !== undefined ? datos.foto : datosUsuario.foto,
+      admin: datos.admin !== undefined ? datos.admin : datosUsuario.admin 
+    };
+
+    var user = new Usuario(datos.id, datosActualizados);
+
+    if (user.bandera === 0) {
       try {
         await conexion.doc(user.id).set(user.obtenerDatos);
         console.log("Modificado");
@@ -80,6 +88,7 @@ async function modificarUsuario(datos) {
       }
     }
   }
+  
   return error;
 }
 

@@ -1,24 +1,27 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-    <img class="logoLobito" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
-    <a class="navbar-brand" href="/obra/obras">LoboArt</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link" href="/obra/obras">Pinturas del mundo</a>
-        </li>
-        <form class="d-flex" role="search" action="/obra/buscarObra" method="POST">
-            <input class="form-control me-2" name="search" type="search" placeholder="Buscar obra" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Buscar</button>
-          </form>
-        <li class="nav-item">
-            <a class="nav-link" href="/logout"> Cerrar sesion</a>
-        </li>
-            </ul>
-        </li> 
-    </div>
+        <div class="d-flex justify-content-between align-items-center w-100"> <!-- División en dos secciones -->
+            <div class="d-flex align-items-center">
+                <img class="logoLobito me-2" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
+                <a class="navbar-brand" href="/obra/obras">LoboArt</a>
+            </div>
+            <div class="d-flex align-items-center"> 
+                <form class="d-flex me-2" role="search" action="/obra/buscarObra" method="POST">
+                    <input class="form-control me-2" name="search" type="search" placeholder="Buscar obra" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Buscar</button>
+                </form>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" id="menu-admin" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     Menu
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/modificarCuenta">Editar Usuario</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
+                      <li><a class="dropdown-item" href="/borrarCuenta">Borrar Cuenta</a></li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
     </div>
 </nav>

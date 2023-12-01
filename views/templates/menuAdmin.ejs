@@ -1,29 +1,31 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-    <img class="logoLobito" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
-    <a class="navbar-brand" href="/usuarios">LoboArt</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="d-flex align-items-center">
+        <img class="logoLobito" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
+        <a class="navbar-brand ms-3" href="/usuarios">LoboArt</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/usuarios">Mostrar usuarios</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/nuevousuario">Nuevo usuario</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/obra/obras/nuevaobra">Nueva Obra</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/obra/obras/mostrarobras">Mostrar Obra</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/logout"> Cerrar sesion</a>
-        </li>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <button class="btn btn-secondary dropdown-toggle" id="menu-admin" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menu Admin
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/usuarios">Usuarios</a></li>
+              <li><a class="dropdown-item" href="/obra/obras/mostrarobras">Obras</a></li>
+              <li><a class="dropdown-item" href="/obra/comentarios">Ver comentarios</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/nuevousuario">Nuevo Usuario</a></li>
+              <li><a class="dropdown-item" href="/obra/obras/nuevaobra">Nueva obra</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
             </ul>
-        </li> 
+          </li>
+        </ul>
+      </div>
     </div>
-    </div>
-</nav>
+  </nav>
+  

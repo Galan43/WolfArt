@@ -32,27 +32,63 @@
                     <td><%= obra.anio %></td>
                 </tr>
                 <tr>
-                  <td class ="table-label-detalles">Calificacion:</td>
-                  <td><%= obra.calificacion %></td>
+                    <td class="table-label-detalles">Calificación:</td>
+                    <td><%= obra.calificacion %></td>
                 </tr>
             </table>
         </div>
 
         <div class="obra-description">
-          <h2 class="detalles-h2">Descripción:</h2>
-          <p class="detalles-p"><%= obra.descripcion %></p>
+            <h2 class="detalles-h2">Descripción:</h2>
+            <p class="detalles-p"><%= obra.descripcion %></p>
           
-          <!-- Formulario de calificación -->
-          <form id="calificacionForm" data-obraid="<%= obra.id %>" action="/obra/obras/calificar/<%= obra.id %>" method="post">
-              <p class="clasificacion">
-                  <% for (let i = 5; i >= 1; i--) { %>
-                  <input id="radio<%= i %>" type="radio" name="calificacion" value="<%= i %>" <%= obra.calificacion === i ? 'checked' : '' %>>
-                  <label for="radio<%= i %>">★</label>
-                  <% } %>
-              </p>
-              <button type="submit" class="btn btn-primary">Calificar</button>
-          </form>
-      </div>
+            <!-- Formulario de calificación -->
+            <form id="calificacionForm" data-obraid="<%= obra.id %>" action="/obra/obras/calificar/<%= obra.id %>" method="post">
+                <p class="clasificacion">
+                    <% for (let i = 5; i >= 1; i--) { %>
+                        <input id="radio<%= i %>" type="radio" name="calificacion" value="<%= i %>" <%= obra.calificacion === i ? 'checked' : '' %>>
+                        <label for="radio<%= i %>">★</label>
+                    <% } %>
+                </p>
+                <button type="submit" class="btn btn-primary">Calificar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sección de Comentarios -->
+    <div class="comentarios">
+        <h3>Comentarios</h3>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <% if (comentarios.length == 0) { %>
+                <p>No hay comentarios en este momento</p>
+            <% } else { %>
+                <% comentarios.forEach((comentario) => { %>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= comentario.id %>" aria-expanded="false" aria-controls="flush-collapse<%= comentario.id %>">
+                                Comentario hecho por"<%= comentario.usuario %>"
+                            </button>
+                        </h2>
+                        <div id="flush-collapse<%= comentario.id %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body"><%= comentario.comentario %></div>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Formulario para agregar nuevos Comentarios -->
+    <div class="agregar-comentario">
+        <h3>Agregar Comentario</h3>
+        <form action="/obra/agregarComentario" method="POST">
+            <input type="hidden" name="obra" value="<%= obra.id %>"> <!-- Asegúrate de pasar el ID de la obra -->
+            <div class="form-group">
+                <label for="comentario">Comentario:</label>
+                <textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar</button>
+        </form>
     </div>
 </div>
 <%- include ("../templates/piedonar")%>

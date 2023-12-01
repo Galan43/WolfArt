@@ -15,52 +15,42 @@
     }
 %>
 
-<div class="container mt-5" >
-
-        
-    <div class="card"></div>
-      <div class="card-header">
-          <h1>Usuarios</h1>
-      </div>
-      <div class="card-body">
-          <table class="table table-hover">
-              <thead>
-                  <tr>
-                      <th>id</th>
-                      <th>Nombre</th>
-                      <th>Usuario</th>
-                      <th>Password</th>
-                      <th>Foto</th>
-                      <th>Editar/Borrar</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <%
-                      usuarios.forEach((usuario)=>{ 
-                  %>
-                  <tr>
-                      <td><%= usuario.id%></td>
-                      <td><%= usuario.nombre%></td>
-                      <td><%= usuario.usuario%></td>
-                      <td><%= usuario.password.slice(0,8)%></td>
-                      <td> <img width="80px" height="80px" src="/images/<%= usuario.foto%>"></td>
-                      <td>
-                          <a href="/editar/<%= usuario.id%>">🔝</a>
-                          <a href="/borrar/<%= usuario.id%>">🚮</a>
-                      </td>
-                  </tr>
-                  <%
-                  });
-                  %>
-              </tbody>
-          </table>
-      </div>
-      <div class="card-footer">
-
-      </div>
-  </div>
+<div class="container mt-5">
+    <div class="card-user">
+        <div class="card-header-user">
+            <h1>Usuarios</h1>
+        </div>
+        <div class="card-body-user">
+            <table class="custom-table">
+                <thead class="thead-user">
+                    <tr class="tr-user">
+                        <th class="th-user">id</th>
+                        <th class="th-user">Nombre</th>
+                        <th class="th-user">Usuario</th>
+                        <th class="th-user">Password</th>
+                        <th class="th-user">Foto</th>
+                        <th class="th-user">Editar/Borrar</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody-user">
+                    <% usuarios.forEach((usuario) => { %>
+                    <tr>
+                        <td class="td-user"><%= usuario.id%></td>
+                        <td class="td-user"><%= usuario.nombre%></td>
+                        <td class="td-user"><%= usuario.usuario%></td>
+                        <td class="td-user"><%= usuario.password.slice(0,8)%></td>
+                        <td class="td-user"> <img src="/images/<%= usuario.foto%>"></td>
+                        <td class="td-user">
+                            <a href="/editar/<%= usuario.id%>">🔝</a>
+                            <a href="/borrar/<%= usuario.id%>">🚮</a>
+                        </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer"></div>
+    </div>
+</div>
 
 <%- include ("../templates/pie")%>
-
-
-

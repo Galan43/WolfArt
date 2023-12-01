@@ -1,0 +1,80 @@
+.confirmation-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-top: 20px;
+    width: 60%; /* Ancho del contenedor */
+    margin: 50px auto; /* Margen superior e inferior de 50px, y margen izquierdo y derecho automáticos para centrar */
+}
+
+/* Resto de tus estilos permanecen igual */
+.warning-message {
+    margin-bottom: 20px;
+}
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px; /* Espacio superior para separar de otros elementos */
+  }
+  
+  .buttons a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .buttons a:nth-child(1) {
+    background-color: #e74c3c;
+    color: #fff;
+    border: 1px solid #c0392b;
+  }
+  
+  .buttons a:nth-child(2) {
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #2980b9;
+  }
+  
+  .buttons a:hover {
+    opacity: 0.8;
+  }
+
+
+  .buttons1 {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px; /* Espacio superior para separar de otros elementos */
+  }
+  
+  .buttons1 a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  }
+  
+  .buttons1 a:nth-child(1) {
+    background-color: #3498db;
+    color: #fff;
+    border: 1px solid #3498db;
+  }
+  
+  .buttons1 a:nth-child(2) {
+    background-color: #c0392b;
+    color: #fff;
+    border: 1px solid #c0392b;
+  }
+  
+  .buttons1 a:hover {
+    opacity: 0.8;
+  }
+
