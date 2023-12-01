@@ -39,8 +39,8 @@
                         <td class="td-user"><%= usuario.password.slice(0,8)%></td>
                         <td class="td-user"> <img src="/images/<%= usuario.foto%>"></td>
                         <td class="td-user">
-                            <a href="/editar/<%= usuario.id%>">🔝</a>
-                            <a href="/borrar/<%= usuario.id%>">🚮</a>
+                            <a href="/editar/<%= usuario.id%>"><img src="/images/usuario.png"></a>
+                            <a href="/borrar/<%= usuario.id%>"><img src="/images/eliminar-user-obra.png"></a>
                         </td>
                     </tr>
                     <% }); %>

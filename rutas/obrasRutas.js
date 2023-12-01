@@ -62,7 +62,7 @@ rutasObra.post("/obras/editarObra", subirArchivo(), async (req, res) => {
       }
     }
     var error = await modificarObra(req.body);
-    res.redirect("/obra/obras/mostrarobra");
+    res.redirect("/obra/obras/mostrarobras");
   } catch (error) {
     console.error("Error al editar obra:", error);
     res.status(500).send("Error interno del servidor");

@@ -51,6 +51,7 @@ async function nuevoUsuario(datos) {
   }
   return error;
 }
+
 async function modificarUsuario(datos) {
   var error = 1;
   var respuestaBuscar = await buscarPorID(datos.id);

@@ -54,18 +54,34 @@ async function nuevaObra(datos) {
 async function modificarObra(datos) {
   var error = 1;
   var respuestaBuscar = await buscarObraPorID(datos.id);
-  if (respuestaBuscar != "") {
-    var obraData = new Obras(datos.id, datos);
-    if (obraData.bandera == 0) {
+  
+  if (respuestaBuscar !== "") {
+    var obraActual = await conexionObra.doc(datos.id).get();
+    var datosObra = obraActual.data();
+
+    // Verificar si se proporcionan nuevos valores en el formulario
+    const nuevosDatos = {
+      nombre: datos.nombre !== undefined ? datos.nombre : datosObra.nombre,
+      artista: datos.artista !== undefined ? datos.artista : datosObra.artista,
+      descripcion: datos.descripcion !== undefined ? datos.descripcion : datosObra.descripcion,
+      anio: datos.anio !== undefined ? datos.anio : datosObra.anio,
+      foto: datos.foto !== undefined ? datos.foto : datosObra.foto,
+      calificacion: datos.calificacion !==undefined ? datos.calificacion : datosObra.calificacion
+    };
+
+    var obra = new Obras(datos.id, nuevosDatos);
+
+    if (obra.bandera === 0) {
       try {
-        await conexionObra.doc(obraData.id).set(obraData.obtenerDatos());
+        await conexionObra.doc(obra.id).set(obra.obtenerDatos());
         console.log("Obra modificada");
         error = 0;
       } catch (err) {
         console.log("Error al modificar la obra: " + err);
       }
     }
-  } 
+  }
+  
   return error;
 }
 

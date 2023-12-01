@@ -68,7 +68,7 @@ ruta.post("/editar", subirArchivo(), async (req, res) => {
       }
     }
     await modificarUsuario(req.body);
-    res.redirect("usuarios/login"); 
+    res.redirect("/usuarios"); 
   } catch (error) {
     console.error("Error al editar usuario:", error);
     res.status(500).send("Error interno del servidor");
@@ -146,13 +146,14 @@ ruta.post("/login", async (req, res) => {
   if (usuarioEnt) {
     var passwordCorrect = await verificarPassword(password, usuarioEnt.password, usuarioEnt.salt);
     if (passwordCorrect) {
-      req.session.usuarioId = usuarioEnt.id; // Guardar el ID del usuario en la sesión
+      req.session.usuarioId = usuarioEnt.id;
       if (usuarioEnt.admin) {
         req.session.admin = usuarioEnt.admin;
-        res.redirect("/usuarios");
+        req.session.usuario = usuarioEnt.usuario; 
+        res.redirect("/usuarios"); 
       } else {
         req.session.usuario = usuarioEnt.usuario;
-        res.redirect("/obra/obras/");
+        res.redirect("/obra/obras/"); 
       }
     } else {
       console.log("Usuario o contraseña incorrectos");
