@@ -57,7 +57,7 @@
 
     <!-- Sección de Comentarios -->
     <div class="comentarios">
-        <h3>Comentarios</h3>
+        <h3 class="comentarios">Comentarios</h3>
         <div class="accordion accordion-flush" id="accordionFlushExample">
             <% if (comentarios.length == 0) { %>
                 <p>No hay comentarios en este momento</p>
@@ -66,7 +66,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= comentario.id %>" aria-expanded="false" aria-controls="flush-collapse<%= comentario.id %>">
-                                Comentario hecho por"<%= comentario.usuario %>"
+                                <i>Comentario hecho por: <%= comentario.usuario %></i>
                             </button>
                         </h2>
                         <div id="flush-collapse<%= comentario.id %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
@@ -77,14 +77,15 @@
             <% } %>
         </div>
     </div>
-
+<br>
     <!-- Formulario para agregar nuevos Comentarios -->
     <div class="agregar-comentario">
-        <h3>Agregar Comentario</h3>
+        <h3 class="comentarios">Agregar Comentario</h3>
+        <br>
         <form action="/obra/agregarComentario" method="POST">
             <input type="hidden" name="obra" value="<%= obra.id %>"> <!-- Asegúrate de pasar el ID de la obra -->
             <div class="form-group">
-                <label for="comentario">Comentario:</label>
+                <label for="comentario">Escribe tu comentario aqui abajo:</label>
                 <textarea class="form-control" id="comentario" name="comentario" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Agregar</button>

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center w-100"> <!-- División en dos secciones -->
+        <div class="d-flex justify-content-between align-items-center w-100">
             <div class="d-flex align-items-center">
                 <img class="logoLobito me-2" src="https://live.staticflickr.com/65535/53288220839_a77cab3c20_o.png" alt="logoLobito">
                 <a class="navbar-brand" href="/obra/obras">LoboArt</a>
@@ -15,12 +15,14 @@
                      Menu
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/modificarCuenta">Editar Usuario</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="/logout">Cerrar sesion</a></li>
-                      <li><a class="dropdown-item" href="/borrarCuenta">Borrar Cuenta</a></li>
+                        <% if (typeof usuario !== 'undefined' && usuario && usuario.id) { %>
+                            <li><a class="dropdown-item" href="/editar/<%= usuario.id %>">Editar Usuario</a></li>
+                        <% } %>
+                        <li><a class="dropdown-item" href="/obra/obras">Ver obras</a></li>
+                        <li><a class="dropdown-item" href="/logout">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="/borrarCuenta">Borrar Cuenta</a></li>
                     </ul>
-                  </div>
+                </div>
             </div>
         </div>
     </div>
