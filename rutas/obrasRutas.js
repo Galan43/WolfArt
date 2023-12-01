@@ -164,11 +164,11 @@ rutasObra.get("/comentarios", admin, async (req, res) => {
   try {
     // Agregar un console.log para verificar el estado de los datos antes de la consulta
     console.log("Verificando datos antes de la consulta a Firestore:");
-
+    const tipo = req.session.usuario || undefined; 
     const comentarios = await mostrarComentarios();
     console.log("Comentarios recuperados:", comentarios);
 
-    const tipo = req.session.usuario || undefined; 
+
     res.render('obras/mostrarComentarios', { comentarios, tipo });
   } catch (err) {
     console.error('Error al recuperar comentarios:', err);

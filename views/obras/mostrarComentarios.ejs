@@ -1,12 +1,14 @@
 <%- include ("../templates/encabezado")%>
 <%
-    if (tipo == undefined) {
-%>
-<%- include ("../templates/menuAdmin")%>
-<% 
-    } else {
+    if(tipo == undefined){
 %>
 <%- include ("../templates/menuUsuarios")%>
+<% 
+    } 
+    else {
+%>
+<%- include ("../templates/menuAdmin")%>
+
 <% 
     }
 %>
