@@ -97,6 +97,7 @@ ruta.get("/borrarCuenta", async (req, res) => {
 });
 
 
+
 ruta.get("/borrarCuenta/:id", async (req, res) => {
   const usuarioId = req.params.id;
   try {
@@ -122,14 +123,103 @@ ruta.get("/borrarCuenta/:id", async (req, res) => {
 ruta.get("/renderizarMenuUsuarios", async (req, res) => {
   try {
     const tipo = req.session.usuario || undefined;
-    const usuario = await buscarPorID(req.params.id); 
+    const usuarioId = req.session.usuarioId; 
     
-    res.render("templates/menuUsuarios", { usuario, tipo }); 
+    if (usuarioId) {
+      const usuario = await buscarPorID(usuarioId); 
+      
+      res.render("templates/menuUsuarios", { usuario, tipo });
+    } else {
+      res.render("templates/menuUsuarios", { usuario: null, tipo }); 
+    }
   } catch (error) {
     console.error("Error al renderizar el menú de usuarios:", error);
     res.status(500).send("Error interno del servidor");
   }
 });
+
+// Modificar usuario
+ruta.get("/modificarCuenta", async (req, res) => {
+  const usuarioId = req.session.usuarioId;
+  
+  if (usuarioId) {
+    try {
+      const tipo = req.session.usuario || undefined; 
+      const usuario = await buscarPorID(usuarioId);
+      
+      if (!usuario) {
+        console.error("Usuario no encontrado");
+        res.status(404).send("Usuario no encontrado");
+        return;
+      }
+      
+      res.render("pag/modificarCuenta", { usuarioId, tipo, user: usuario });
+    } catch (error) {
+      console.error("Error al cargar la página de modificación:", error);
+      res.status(500).send("Error interno del servidor al intentar cargar la página de modificación");
+    }
+  } else {
+    res.redirect("/login"); 
+  }
+});
+
+
+ruta.get("/modificarUsuario/:id", async (req, res) => {
+  const usuarioId = req.params.id;
+  try {
+    const usuario = await buscarPorID(usuarioId);
+    if (usuario) {
+      const tipo = req.session.usuario || undefined; 
+
+      res.render("pag/modificarCuenta", { user: usuario, tipo: tipo, usuarioId: usuarioId }); 
+      // Asegúrate de pasar 'usuarioId' al renderizar la plantilla 'modificarCuenta'
+    } else {
+      res.status(404).send("Usuario no encontrado");
+    }
+  } catch (error) {
+    console.error("Error al intentar cargar la página de modificación:", error);
+    res.status(500).send("Error interno del servidor al intentar cargar la página de modificación");
+  }
+});
+
+ruta.post("/ModificarMiCuenta/:id", subirArchivo(), async (req, res) => {
+  try {
+    const usuarioAct = await buscarPorID(req.body.id);
+    
+    if (!usuarioAct) {
+      console.error("Usuario no encontrado");
+      res.status(404).send("Usuario no encontrado");
+      return;
+    }
+
+    if (req.file) {
+      req.body.foto = req.file.originalname;
+
+      if (usuarioAct.foto) {
+        const rutaFotoAnterior = `web/images/${usuarioAct.foto}`;
+        fs.unlinkSync(rutaFotoAnterior);
+      } else {
+        req.body.foto = req.body.fotoViejo;
+      }
+    }
+    usuarioAct.nombre = req.body.nombre;
+    usuarioAct.usuario = req.body.usuario;
+    usuarioAct.password = req.body.password || usuarioAct.password; 
+
+    // Actualiza la foto si se sube una nueva
+    if (req.file) {
+      usuarioAct.foto = req.file.originalname;
+    }
+
+    await modificarUsuario(usuarioAct); 
+
+    res.redirect("/login");
+  } catch (error) {
+    console.error("Error al modificar la cuenta:", error);
+    res.status(500).send("Error interno del servidor");
+  }
+});
+
 
 ruta.get("/", async (req, res) =>{
   res.render("usuarios/index");
